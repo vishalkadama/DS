@@ -51,6 +51,25 @@ func sameChar(s1 : String, s2 : String) -> Bool{
     return false
 }
 
+
+func sameCharDict(s1: String, s2: String) -> Bool{
+    
+    let turple = s1.map {($0,1)}
+    let dict = Dictionary (turple, uniquingKeysWith: +)
+    
+    let turple2 = s2.map {($0,1)}
+     let dict2 = Dictionary (turple2, uniquingKeysWith: +)
+    
+    if dict == dict2 {
+        return true
+    } else {
+        return false
+    }
+    
+}
+
+sameCharDict(s1: "vishal", s2: "lahisv")
+
 sameChar(s1: "vishal", s2: "lahisv")
 
 sameCharInTwoStrings(s1: "vishal", s2: "lahisv")
