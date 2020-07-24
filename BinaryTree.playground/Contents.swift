@@ -286,9 +286,67 @@ extension BinaryTree {
             return binaryTree
         }
         
+        minimalTree(array, 0, array.count - 1)
+        
         
     }
     
+    
+    
+    
+}
+
+extension BinaryTree {
+   
+    
+    /* Check Binary Tree Blanced */
+    
+    /* Blanced Tree : It is defined as " The depth of the left and right (subtrees) node never differ than one"
+     
+     1.The left and right subtrees' heights differ by at most one, AND
+     2.The left subtree is balanced, AND
+     3.The right subtree is balanced
+     
+     a
+     / \
+     b   c
+     /
+     d
+     */
+    
+    
+    func checkBlancedTree(){
+        
+        guard let node = self.rootNode else {
+            return
+        }
+        
+        func isBlancedTree(_ nod : TreeNode<T>?)-> Bool{
+            
+            guard let node = nod else {
+                return true
+            }
+            
+            let left =  checkHeight(node.left)
+            let right = checkHeight(node.right)
+            
+            let absValue = abs(left - right)
+            if absValue <= 1 && isBlancedTree(node.left) && isBlancedTree(node.right) {
+                return true
+            }
+            return false
+        }
+        
+        func checkHeight(_ node : TreeNode<T>?) -> Int {
+           
+            guard let _ = node else {
+                return 0
+            }
+           
+            return max(checkHeight(node?.left), checkHeight(node?.right)) + 1
+        }
+        
+    }
 }
 
 
