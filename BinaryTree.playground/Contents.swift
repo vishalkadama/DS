@@ -248,6 +248,7 @@ extension BinaryTree {
         }
         var count = 0
         
+        
         queue?.enqueue(node)
         
         while !(queue?.isEmpty())! {
@@ -261,10 +262,10 @@ extension BinaryTree {
             }
             
             if let left = dequeue.left{
-                queue?.dequeue(left)
+                queue?.enqueue(left)
             }
             if let right = dequeue.right{
-                queue?.dequeue(right)
+                queue?.enqueue(right)
             }
         }
         return count
@@ -351,3 +352,42 @@ extension BinaryTree {
 }
 
 
+extension BinaryTree {
+    
+    // Validate BST: Implement a function to check if a binary tree is a binary search tree.
+    
+   
+        
+        func isValidBST(_ root: TreeNode<T>?) -> Bool{
+          
+            guard let node = root else {
+                return false
+            }
+            
+            func checkBST(_ node : TreeNode<T>?, minValue : Int, maxValue : Int)-> Bool{
+                
+                guard let node = root else {
+                    return true
+                }
+                if ((node.value as! Int) >= maxValue) || ( (node.value as! Int) <= minValue ) {
+                    return false
+                }
+                
+                let left = checkBST(node.left, minValue: minValue, maxValue: node.value as! Int)
+                let right = checkBST(node.right, minValue: node.value as! Int, maxValue: maxValue)
+
+                
+                return left && right
+            }
+            
+            checkBST(node, minValue: Int.min, maxValue: Int.max)
+            
+            return true
+            
+        }
+        
+      //  func checkBST(_ n : TreeNode<T>?) -> Bool {}
+    
+    
+    
+}
