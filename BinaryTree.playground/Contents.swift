@@ -314,6 +314,7 @@ extension BinaryTree {
      d
      */
     
+    //0(n^2) in worst case
     
     func checkBlancedTree(){
         
