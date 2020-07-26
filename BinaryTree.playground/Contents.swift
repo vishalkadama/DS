@@ -126,6 +126,7 @@ class BinaryTree <T: Comparable & CustomStringConvertible>
         
     }
     
+   // For Reference --- https://www.youtube.com/watch?v=5dySuyZf9Qg
     // L N R
     func inorder(_ node : TreeNode<T>?){
         guard let _ = node else {return}
@@ -366,15 +367,14 @@ extension BinaryTree {
             
             func checkBST(_ node : TreeNode<T>?, minValue : Int, maxValue : Int)-> Bool{
                 
-                guard let node = root else {
-                    return true
-                }
-                if ((node.value as! Int) >= maxValue) || ( (node.value as! Int) <= minValue ) {
+                guard let root = node else { return true }
+                
+                if ((root.value as! Int) >= maxValue) || ( (root.value as! Int) <= minValue ) {
                     return false
                 }
                 
-                let left = checkBST(node.left, minValue: minValue, maxValue: node.value as! Int)
-                let right = checkBST(node.right, minValue: node.value as! Int, maxValue: maxValue)
+                let left = checkBST(root.left, minValue: minValue, maxValue: root.value as! Int)
+                let right = checkBST(root.right, minValue: root.value as! Int, maxValue: maxValue)
 
                 
                 return left && right
@@ -387,7 +387,52 @@ extension BinaryTree {
         }
         
       //  func checkBST(_ n : TreeNode<T>?) -> Bool {}
+   
     
+    
+    class Solution {
+        
+         class TreeNode {
+            public var val: Int
+            public var left: TreeNode?
+            public var right: TreeNode?
+            public init() { self.val = 0; self.left = nil; self.right = nil; }
+            public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+            public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+                self.val = val
+                self.left = left
+                self.right = right
+            }
+        }
+        
+    
+        
+//        var maxValue = Int.min
+//        var result = Int.min
+//        func maxPathSum(_ root: TreeNode?) -> Int {
+//            
+//            guard let node = root else { return 0}
+//            
+//            func checkMaxValue (_ root : TreeNode?) -> Int{
+//                guard let node = root else { return 0}
+//                
+//               
+//                
+//                let left = checkMaxValue(node.left)
+//                let right = checkMaxValue(node.right)
+//                
+//                maxValue = max(max(left, right), node.val)
+//                maxValue = max(maxValue, left + right + node.val)
+//                result = max(maxValue, result)
+//                
+//                return result
+//            }
+//            
+//            checkMaxValue (node)
+//            return maxValue
+//        }
+        
+    }
     
     
 }
